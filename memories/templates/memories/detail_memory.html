@@ -1,0 +1,43 @@
+﻿{% extends 'memories/memories_base.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Детали
+{% endblock %}
+
+
+{% block content %}
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item">Автор {{mem.user.username}}</li>
+		<li class="list-group-item">Название-{{mem.place_name}}</a></li>
+  	  	<li class="list-group-item">Страна-{{mem.place_country}}</li>
+  	  	<li class="list-group-item">Город-{{mem.place_city}}</li>
+		<li class="list-group-item">Дата-{{mem.date_event}}</li>
+	  <p>Дополнительная ифнормация</p>
+  	  	<li class="list-group-item">{{mem.description}}</li>
+ 	 </ul>
+	 <p>Фото</p>
+  	  	<li class="list-group-item">
+			{% for key,value in img_dict.items%}
+			<a href='{{key.get_absolute_url}}' ><img  class="rounded-circle account-img" src="{{value}}" style="width: 100px; height: auto;"></a>
+
+			{%endfor%}
+		</li>
+	</div>
+
+	{% if request.user.is_authenticated %}
+		<div class="obj-panel">
+			 <p>Выбрать</p>
+				 {% block obj-panel%}
+					<a class="btn btn-light" href="{{mem.get_update_url}}">Редктировать</a>
+					<a class="btn btn-danger" href="{{mem.get_delete_url}}">Del</a>
+					<a class="btn btn-light" href="{%url 'list_memories_url'%}">Вернуться к списку</a>
+				 {%endblock%}
+		</div>
+	{% endif%}
+
+{% endblock %} 
+
+<!--{flat.get_absolute_url}-->

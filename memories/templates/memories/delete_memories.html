@@ -1,0 +1,18 @@
+﻿{% extends 'memories/memories_base.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Памятные места
+{% endblock %}
+
+
+{% block content %}
+	<form action="{{mem.get_delete_url}}" method='post'>
+		{% csrf_token %}
+	<h3>Вы уверены, что хотите удалить объект?<b>"{{mem.place_name}}"</b></h3>
+	<a href="{{mem.get_absolute_url}}">Отменить</a>
+	<button type="submit" class="btn btn-danger">Удалить</button>
+	</form>
+{% endblock %} 

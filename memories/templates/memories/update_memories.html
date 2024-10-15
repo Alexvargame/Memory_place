@@ -1,0 +1,77 @@
+﻿{% extends 'memories/memories_base.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Новое место
+{% endblock %}
+
+
+{% block content %}
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 100%;
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 8px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+	<form action="{{mem.get_update_url}}" method='post' enctype="multipart/form-data">
+			{% csrf_token %}
+		<div class="form-group">
+			<table style="width:100%">
+				<tr>
+					<td style="font-size:100%;width:5%" hidden>Название {{form.user}}</td>
+					<td style="font-size:100%;width:35%">Название {{form.place_name}}</td>
+					<td style="font-size:100%;width:25%">Страна {{form.place_country}}</td>
+					<td style="font-size:100%;width:25%">Город {{form.place_city}}</td>
+					<td style="font-size:100%;width:10%">Дата {{form.date_event}}</td>
+				</tr>
+			</table>
+			<table style="width:100%">
+				<tr>
+					<td style="font-size:100%;width:100%">Описание {{form.description}}</td>
+
+				</tr>
+				<p>Фото</p>
+				<tr>
+					<td>
+						<li class="list-group-item">
+							{% for img in images%}
+								<img class="rounded-circle account-img" src="{{img}}" style="width: 100px; height: auto;">
+							{%endfor%}
+						</li>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						{%for img in imgs%}
+							<a href="{{img.id}}">Удалить</a>
+						{%endfor%}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						{{form.mem_image}}
+					</td>
+				</tr>
+			</table>
+		</div>
+		<button type="submit" class="btn btn-primary">Сохранить</button>
+
+	</form>
+{{s}}
+{% endblock %} 
+
+

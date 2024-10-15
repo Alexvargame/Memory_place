@@ -1,0 +1,56 @@
+﻿{% extends 'memories/memories_base.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Памятные места
+{% endblock %}
+
+
+{% block content %}
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 100%;
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 8px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+	
+	<table>
+  		<tr>
+		 <th style="width:2%">I</th>
+   		 <th style="width:10%">Название</th>
+  		 </tr>
+		
+	{% for mem in l_mems %}
+	
+	<tr>
+		<td style="font-size:80%"> <a href="{{mem.get_absolute_url}}"> I</a></td>
+		<td style="font-size:80%;">{{mem.place_name}}</td>
+		 </td>
+		</tr>		
+	  	
+	{%endfor%}
+	
+		
+	</table>
+
+
+<a class="btn btn-primary" href="{% url 'create_memory_url' %}" role="button">Добавить воспоминание</a>
+
+
+{% endblock %} 
+
+<!--{flat.get_absolute_url}-->
